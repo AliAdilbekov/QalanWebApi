@@ -1,1 +1,2 @@
-BASE_URL = "https://preprod.qalan.kz/api/users/register"
+BASE_URL = "https://preprod.qalan.kz/api"
+
