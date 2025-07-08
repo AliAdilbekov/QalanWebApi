@@ -1,5 +1,3 @@
-# api_clients/base_api_client.py
-
 import requests
 from config import BASE_URL
 
