@@ -80,10 +80,7 @@ class AuthClient(BaseAPIClient):
 
 ### `tests/`
 
-Содержит сами тесты:
-
-* `test_register.py` — тест регистрации
-* `test_login.py` — тест логина
+Содержит сами тесты
 
 Каждый тест проверяет:
 
