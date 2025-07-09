@@ -4,6 +4,8 @@ from utils.data_generator import generate_firstname, generate_surname, generate_
 from utils.get_token import get_token
 from api_clients.pupil_client import PupilClient
 from api_clients.payment_client import PaymentClient
+import os
+
 
 @pytest.fixture
 def admin_token():
@@ -16,6 +18,14 @@ def pupil_client():
 @pytest.fixture
 def payment_client():
     return PaymentClient()
+
+@pytest.fixture
+def check_file_path():
+    return os.path.join(
+        "utils",
+        "check_for_payments",
+        "Снимок экрана 2025-07-09 в 1.28.54 PM.png"
+    )
 
 @pytest.fixture
 def pupil_payload():
