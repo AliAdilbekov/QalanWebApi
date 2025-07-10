@@ -5,7 +5,11 @@ from utils.get_token import get_token
 from api_clients.pupil_client import PupilClient
 from api_clients.payment_client import PaymentClient
 import os
-
+from utils.data_generator import generate_kaspi_check_link 
+from utils.data_generator import generate_firstname, generate_surname, generate_phone_number
+from utils.get_token import get_token
+from api_clients.pupil_client import PupilClient
+from api_clients.payment_client import PaymentClient
 
 @pytest.fixture
 def admin_token():
@@ -53,14 +57,6 @@ def pupil_payload():
         }
     }
 
-import pytest
-import datetime
-
-from utils.data_generator import generate_firstname, generate_surname, generate_phone_number
-from utils.get_token import get_token
-from api_clients.pupil_client import PupilClient
-from api_clients.payment_client import PaymentClient
-
 
 @pytest.fixture
 def admin_token():
@@ -103,7 +99,6 @@ def pupil_payload():
         }
     }
 
-
 @pytest.fixture
 def subscription_payload_template():
     def _build(
@@ -138,5 +133,39 @@ def subscription_payload_template():
         }
 
     return _build
+
+
+@pytest.fixture
+def kaspi_subscription_payload():
+    def _build(user_id, pupil_phone, course_type="math_course", subscription_type="math_course", method_type="kaspi_red"):
+        today = datetime.date.today()
+        kaspi_data = generate_kaspi_check_link()
+
+        return {
+            "sum": "179500",
+            "phoneNumber": pupil_phone,
+            "currency": "KZT",
+            "bankAccount": "qalankz",
+            "methodType": method_type,
+            "managerId": "3",
+            "paidAt": kaspi_data["paidAt"],
+            "kaspiCheckLink": kaspi_data["kaspiCheckLink"],
+            "audioRecordingLink": "https://my.binotel.ua/?module=history&subject=77751182011&sacte=ovl-link-pb-46",
+            "isNeedAddSubscription": "true",
+            "subscriptionType": subscription_type,
+            "courseType": course_type,
+            "location": "preprod.qalan.kz",
+            "userId": str(user_id),
+            "dateFrom": str(today),
+            "dateTo": str(today.replace(year=today.year + 1)),
+            "subscriptionSum": "179500",
+            "managerSum": "10000",
+            "isNeedInternalInstalment": "false",
+            "engagementSourceType": "sarafan_instagram",
+            "amocrmLink": "https://crm.qalan.kz/leads/526844e2-3501-4447-82a0-5bc9140f9d1a"
+        }
+
+    return _build
+
 
 
