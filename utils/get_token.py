@@ -41,3 +41,23 @@ def get_employee_token() -> str:
     token = data.get("token")
     assert token, "[AUTH ERROR] Token not found in response"
     return token
+
+def get_mentor_token() -> str:
+    url = f"{BASE_URL}/users/login"
+    payload = {
+        "phoneNumber": "77022738232",  
+        "password": "87654321",
+        "countryCode": "kz",
+        "isParent": False
+    }
+
+    print(f"[DEBUG] POST {url}")
+    print(f"[DEBUG] PAYLOAD: {payload}")
+
+    response = requests.post(url, json=payload)
+    assert response.status_code == 200, f"[AUTH ERROR] {response.status_code}: {response.text}"
+
+    data = response.json()
+    token = data.get("token")
+    assert token, "[AUTH ERROR] Token not found in response"
+    return token
