@@ -6,7 +6,7 @@ from utils.data_generator import generate_freezing_date
 
 @allure.title("Добавление заморозки ученику")
 def test_add_freezing_to_pupil():
-    token = get_freezing_pupil_token()  # ← используем именно этот токен
+    token = get_freezing_pupil_token()  
     client = PupilClient()
     freeze_date = generate_freezing_date()
 
