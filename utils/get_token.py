@@ -61,3 +61,24 @@ def get_mentor_token() -> str:
     token = data.get("token")
     assert token, "[AUTH ERROR] Token not found in response"
     return token
+
+def get_freezing_pupil_token() -> str:
+    url = f"{BASE_URL}/users/login"
+    payload = {
+        "phoneNumber": "77089744792",
+        "password": "12345678", 
+        "countryCode": "kz",
+        "isParent": False
+    }
+
+    print(f"[DEBUG] POST {url} (Freezing pupil)")
+    print(f"[DEBUG] PAYLOAD: {payload}")
+
+    response = requests.post(url, json=payload)
+    assert response.status_code == 200, f"[AUTH ERROR] {response.status_code}: {response.text}"
+
+    data = response.json()
+    token = data.get("token")
+    assert token, "[AUTH ERROR] Token not found in response"
+    return token
+

@@ -1,5 +1,6 @@
 import random
 from datetime import datetime
+from datetime import datetime, timedelta
 import pytz
 
 kazakh_firstnames = [
@@ -54,3 +55,11 @@ def generate_kaspi_check_link():
         "paidAt": paid_at_utc
     }
 
+
+def generate_freezing_date():
+    start = datetime(2025, 7, 16)
+    end = datetime(2026, 4, 30)
+    delta = end - start
+    random_day = random.randint(0, delta.days)
+    result_date = start + timedelta(days=random_day)
+    return result_date.strftime("%Y-%m-%d")

@@ -2,17 +2,18 @@ import pytest
 import allure
 from utils.get_token import get_mentor_token
 from api_clients.personal_study_client import PersonalStudyClient
-
-phone = "77083544313"
-expected_fullname = "Forautotest FORAUTOTEST"
-expected_user_id = 1001
-expected_subscription = "math_course"
+from test_data.pupils import po_test_pupil
 
 
 @allure.title("Поиск ученика в Персональном обучении 2 (ПО2) по номеру телефона")
 def test_search_pupil_in_po2():
     token = get_mentor_token()
     client = PersonalStudyClient()
+
+    phone = po_test_pupil["phone"]
+    expected_fullname = po_test_pupil["fullname"]
+    expected_user_id = po_test_pupil["user_id"]
+    expected_subscription = po_test_pupil["subscription"]
 
     with allure.step(f"Отправляем запрос на /filteredBySearchText с номером {phone}"):
         response = client.search_by_phone(token, phone)
@@ -41,6 +42,11 @@ def test_search_pupil_in_po2():
 def test_search_pupil_in_po3():
     token = get_mentor_token()
     client = PersonalStudyClient()
+
+    phone = po_test_pupil["phone"]
+    expected_fullname = po_test_pupil["fullname"]
+    expected_user_id = po_test_pupil["user_id"]
+    expected_subscription = po_test_pupil["subscription"]
 
     with allure.step("Отправляем запрос на /mentorSessions"):
         response = client.get_mentor_sessions(token)
