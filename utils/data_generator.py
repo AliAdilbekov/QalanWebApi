@@ -63,3 +63,10 @@ def generate_freezing_date():
     random_day = random.randint(0, delta.days)
     result_date = start + timedelta(days=random_day)
     return result_date.strftime("%Y-%m-%d")
+
+
+def generate_unique_chat_message_pupil() -> str:
+    return f"hello pupil {random.randint(1000, 9999)}"
+
+def generate_unique_chat_message_mentor() -> str:
+    return f"hello mentor {random.randint(1000, 9999)}"
