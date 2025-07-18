@@ -1,0 +1,3 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/register
+[DEBUG] PAYLOAD: {'userType': 'pupil', 'surname': 'Бердигулов', 'firstname': 'Санжар', 'gender': None, 'phoneNumber': '77085001209', 'countryCode': 'kz', 'password': '12345678', 'repeatPassword': '12345678'}
+[SUCCESS] Ученик зарегистрирован: Санжар БЕРДИГУЛОВ | Телефон: 77085001209

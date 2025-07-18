@@ -1,0 +1,5 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'pupilCode': '100', 'password': '12345678'}
+[DEBUG] POST https://preprod.qalan.kz/api/pupils
+[DEBUG] PAYLOAD: {'regionId': 18, 'firstname': 'Мирас', 'surname': 'Абдрахманов', 'phoneNumber': '77081413736', 'parentPhoneNumber': '77025394122', 'country': 'Kazakhstan', 'countryCode': 'kz', 'label': '6', 'language': 'kaz'}
+[OK] Подписка «Halyk 24 мес.» создана для 77081413736

@@ -1,0 +1,5 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'pupilCode': '100', 'password': '12345678'}
+[DEBUG] POST https://preprod.qalan.kz/api/pupils
+[DEBUG] PAYLOAD: {'regionId': 18, 'firstname': 'Сырым', 'surname': 'Есимов', 'phoneNumber': '77027966500', 'parentPhoneNumber': '77079011730', 'country': 'Kazakhstan', 'countryCode': 'kz', 'label': '6', 'language': 'kaz'}
+[OK] Подписка «Kaspi | kaspi_payments (0.95%)» через Kaspi создана для 77027966500

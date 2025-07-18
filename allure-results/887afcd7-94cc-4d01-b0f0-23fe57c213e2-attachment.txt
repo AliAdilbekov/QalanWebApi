@@ -1,0 +1,5 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'pupilCode': '100', 'password': '12345678'}
+[DEBUG] POST https://preprod.qalan.kz/api/mentors
+[DEBUG] PAYLOAD: {'firstname': 'Ерасылхан', 'surname': 'АУБАКИРОВ', 'phoneNumber': '77776316055', 'telegramUserId': '32', 'qualification': 10, 'department': 'kaz', 'country': 'Kazakhstan', 'countryCode': 'kz'}
+[OK] Mentor создан: Ерасылхан АУБАКИРОВ

@@ -1,0 +1,5 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'pupilCode': '100', 'password': '12345678'}
+[DEBUG] POST https://preprod.qalan.kz/api/employees
+[DEBUG] PAYLOAD: {'firstname': 'Санжар', 'surname': 'Жумагулов', 'phoneNumber': '77775858316', 'telegramId': '21332', 'sipuniId': '123', 'role': 'sbb_employee', 'department': 'kaz', 'countryCode': 'kz'}
+[OK] Sbb Employee создан: Санжар Жумагулов

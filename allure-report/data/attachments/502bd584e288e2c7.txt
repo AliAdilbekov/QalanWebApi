@@ -1,0 +1,3 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'phoneNumber': '7708346422', 'password': '12345678', 'countryCode': 'kz', 'isParent': False}
+[SUCCESS] Получена корректная ошибка: Пользователь по данному номеру не найден

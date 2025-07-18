@@ -1,0 +1,5 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'pupilCode': '100', 'password': '12345678'}
+[DEBUG] POST https://preprod.qalan.kz/api/pupils
+[DEBUG] PAYLOAD: {'regionId': 18, 'firstname': 'Ерасылхан', 'surname': 'Тажибаев', 'phoneNumber': '77774752755', 'parentPhoneNumber': '77088473368', 'country': 'Kazakhstan', 'countryCode': 'kz', 'label': '6', 'language': 'kaz'}
+[OK] Подписка «Kaspi | kaspi_three_months» через Kaspi создана для 77774752755

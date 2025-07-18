@@ -1,0 +1,5 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'pupilCode': '100', 'password': '12345678'}
+[DEBUG] POST https://preprod.qalan.kz/api/pupils
+[DEBUG] PAYLOAD: {'regionId': 18, 'firstname': 'Нурсултан', 'surname': 'Баймуханов', 'phoneNumber': '77788769715', 'parentPhoneNumber': '77089546560', 'country': 'Kazakhstan', 'countryCode': 'kz', 'label': '6', 'language': 'kaz'}
+[OK] Подписка «Kaspi | UNT курс» через Kaspi создана для 77788769715

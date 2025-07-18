@@ -1,0 +1,7 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login (Freezing pupil)
+[DEBUG] PAYLOAD: {'phoneNumber': '77089744792', 'password': '12345678', 'countryCode': 'kz', 'isParent': False}
+[DEBUG] POST https://preprod.qalan.kz/api/users/newFreezings/byPupil
+[DEBUG] PAYLOAD: {'date': '2025-11-21'}
+[DEBUG] STATUS: 200
+[DEBUG] BODY: {"createdAt":"2025-07-18T11:07:08","userFullname":null,"userId":383,"authorUserId":383,"authorFullname":null,"date":"2025-11-21","id":111}
+[OK] Заморозка установлена на 2025-11-21

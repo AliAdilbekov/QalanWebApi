@@ -1,0 +1,3 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/register
+[DEBUG] PAYLOAD: {'userType': 'pupil', 'surname': 'Калиев', 'firstname': 'Шерхан', 'gender': None, 'phoneNumber': '77786842521', 'countryCode': 'kz', 'password': '12345678', 'repeatPassword': '12345678'}
+[SUCCESS] Ученик зарегистрирован: Шерхан КАЛИЕВ | Телефон: 77786842521

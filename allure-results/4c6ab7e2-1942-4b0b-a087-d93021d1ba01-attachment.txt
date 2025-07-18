@@ -1,0 +1,3 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'pupilCode': '100', 'password': '12345678'}
+[SUCCESS] Токен получен: eyJhbGciOiJIUzUxMiIsInR5cCI6Ik...

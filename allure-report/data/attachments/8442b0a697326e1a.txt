@@ -1,0 +1,5 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'phoneNumber': '77022738232', 'password': '87654321', 'countryCode': 'kz', 'isParent': False}
+[DEBUG] GET https://preprod.qalan.kz/api/userActions/filteredBySearchText
+[DEBUG] PARAMS: {'searchText': '77083544313'}
+[OK] Найден ученик: Forautotest FORAUTOTEST в ПО2 с подпиской math_course

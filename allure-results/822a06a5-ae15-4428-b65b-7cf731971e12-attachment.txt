@@ -1,0 +1,3 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'phoneNumber': '77083464227', 'password': '', 'countryCode': 'kz', 'isParent': False}
+[SUCCESS] Получена ошибка: Вы должны ввести пароль

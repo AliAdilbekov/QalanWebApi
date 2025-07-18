@@ -1,0 +1,12 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'phoneNumber': '77022738232', 'password': '87654321', 'countryCode': 'kz', 'isParent': False}
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'phoneNumber': '77083544313', 'password': '12345678', 'countryCode': 'kz', 'isParent': False}
+[DEBUG] POST https://preprod.qalan.kz/api/chatMessages
+[DEBUG] PAYLOAD: {'pupilId': 51, 'text': 'hello mentor 4137'}
+[DEBUG] GET https://preprod.qalan.kz/api/chatMessages
+[DEBUG] POST https://preprod.qalan.kz/api/chatMessages
+[DEBUG] PAYLOAD: {'pupilId': 51, 'text': 'hello pupil 4060'}
+[DEBUG] GET https://preprod.qalan.kz/api/chatMessages/last
+[DEBUG] PARAMS: {'pupilId': 51, 'withBotMessages': 'false'}
+[OK] Ментор: hello mentor 4137 | Ученик: hello pupil 4060

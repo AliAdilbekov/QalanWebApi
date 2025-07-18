@@ -1,0 +1,3 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/register
+[DEBUG] PAYLOAD: {'userType': 'pupil', 'surname': 'Абишев', 'firstname': 'Ерасылхан', 'gender': None, 'phoneNumber': '77774805376', 'countryCode': 'kz', 'password': '12345678', 'repeatPassword': '12345678'}
+[SUCCESS] Ученик зарегистрирован: Ерасылхан АБИШЕВ | Телефон: 77774805376

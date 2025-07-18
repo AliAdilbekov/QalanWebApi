@@ -1,0 +1,3 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/register
+[DEBUG] PAYLOAD: {'userType': 'pupil', 'surname': 'test', 'firstname': 'test', 'gender': None, 'phoneNumber': '77084939312', 'countryCode': 'kz', 'password': '12345678', 'repeatPassword': '12345678'}
+[SUCCESS] Правильно получили ошибку: Есть пользователь по номеру телефона.

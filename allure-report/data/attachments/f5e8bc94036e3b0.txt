@@ -1,0 +1,3 @@
+[DEBUG] POST https://preprod.qalan.kz/api/users/login
+[DEBUG] PAYLOAD: {'phoneNumber': '', 'password': '123', 'countryCode': 'kz', 'isParent': False}
+[SUCCESS] Получена ошибка: Номер телефона должен содержать не менее 10 цифр
