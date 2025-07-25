@@ -4,6 +4,7 @@ from src.utils.get_token import get_freezing_pupil_token
 from src.api_clients.pupil_client import PupilClient
 from src.utils.data_generator import generate_freezing_date
 from src.enums.global_enums import GlobalErrorMessages
+from src.schemas.freezing_schemas import AddFreezingResponse
 
 @allure.title("Добавление заморозки ученику")
 def test_add_freezing_to_pupil():
@@ -29,9 +30,10 @@ def test_add_freezing_to_pupil():
 
         assert response.status_code == 200, f"{GlobalErrorMessages.FREEZING_FAILED.value} {response.status_code} - {response.text}"
 
-        result = response.json()
-        assert result.get("date") == freeze_date, \
-            f"{GlobalErrorMessages.FREEZING_DATE_MISMATCH.value} ожидалось {freeze_date}, получили {result.get('date')}"
+        result = AddFreezingResponse.model_validate(response.json())
+
+        assert result.date == freeze_date, \
+            f"{GlobalErrorMessages.FREEZING_DATE_MISMATCH.value} ожидалось {freeze_date}, получили {result.date}"
 
     with allure.step("✅ Заморозка успешно добавлена"):
         msg = f"[OK] Заморозка установлена на {freeze_date}"
