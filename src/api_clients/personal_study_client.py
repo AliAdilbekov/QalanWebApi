@@ -1,4 +1,4 @@
-from api_clients.base_api_client import BaseAPIClient
+from src.api_clients.base_api_client import BaseAPIClient
 
 class PersonalStudyClient(BaseAPIClient):
     def search_by_phone(self, token, phone_number):

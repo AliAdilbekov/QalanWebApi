@@ -1,6 +1,6 @@
 import pytest
-from api_clients.auth_client import AuthClient
-from utils.data_generator import (
+from src.api_clients.auth_client import AuthClient
+from src.utils.data_generator import (
     generate_phone_number,
     generate_firstname,
     generate_surname,

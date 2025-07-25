@@ -1,6 +1,6 @@
 import pytest
-from utils.data_generator import generate_firstname, generate_surname, generate_phone_number
-from api_clients.employee_client import EmployeeClient
+from src.utils.data_generator import generate_firstname, generate_surname, generate_phone_number
+from src.api_clients.employee_client import EmployeeClient
 
 @pytest.fixture
 def employee_payload_template():

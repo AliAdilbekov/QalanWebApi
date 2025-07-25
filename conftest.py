@@ -4,7 +4,7 @@ from tests.fixtures.subscriptions_fixtures import *
 from tests.fixtures.employees_fixtures import *
 from tests.fixtures.chat_fixtures import *
 import pytest
-from utils.telegram_alert import send_telegram_message 
+from src.utils.telegram_alert import send_telegram_message 
 
 
 @pytest.hookimpl(hookwrapper=True)
@@ -24,4 +24,5 @@ def pytest_runtest_makereport(item, call):
             f"```{error_msg[:4000]}```"
         )
 
-        send_telegram_alert(message)
+        send_telegram_message(message)
+

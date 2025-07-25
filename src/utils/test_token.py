@@ -1,4 +1,4 @@
-from utils.get_token import get_token
+from src.utils.get_token import get_token
 
 def test_get_token_success():
     token = get_token()

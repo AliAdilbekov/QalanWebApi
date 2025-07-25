@@ -102,3 +102,7 @@ generate_surname()
 
 ---
 
+pytest --alluredir=allure-results
+allure generate allure-results -o allure-report --cl
+d allure-report                 
+python3 -m http.server 8888

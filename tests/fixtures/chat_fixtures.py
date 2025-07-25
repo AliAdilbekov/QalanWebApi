@@ -1,6 +1,6 @@
 import pytest
-from api_clients.chat_client import ChatClient
-from utils.get_token import get_mentor_token, get_pupil_token
+from src.api_clients.chat_client import ChatClient
+from src.utils.get_token import get_mentor_token, get_pupil_token
 
 @pytest.fixture
 def mentor_token():

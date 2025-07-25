@@ -1,10 +1,11 @@
 import pytest
 import allure
-from utils.data_generator import (
+from src.utils.data_generator import (
     generate_unique_chat_message_mentor,
     generate_unique_chat_message_pupil,
 )
-from utils.helpers import message_exists
+from src.utils.helpers import message_exists
+from src.enums.global_enums import GlobalErrorMessages
 
 @allure.title("Ментор и ученик обмениваются сообщениями")
 def test_chat_bidirectional(mentor_token, pupil_token, chat_client, static_pupil_id):
@@ -20,7 +21,8 @@ def test_chat_bidirectional(mentor_token, pupil_token, chat_client, static_pupil
         response = chat_client.get_messages(pupil_token)
         assert response.status_code == 200
         messages = response.json()
-        assert message_exists(messages, mentor_msg), f"❌ Ученик не получил сообщение '{mentor_msg}'"
+        assert message_exists(messages, mentor_msg), \
+            f"{GlobalErrorMessages.PUPIL_DID_NOT_RECEIVE_MESSAGE.value} '{mentor_msg}'"
 
     with allure.step(f"Ученик отправляет сообщение: {pupil_msg}"):
         response = chat_client.send_message(pupil_token, static_pupil_id, pupil_msg)
@@ -31,7 +33,8 @@ def test_chat_bidirectional(mentor_token, pupil_token, chat_client, static_pupil
         response = chat_client.get_last_messages_for_mentor(mentor_token, static_pupil_id)
         assert response.status_code == 200
         messages = response.json().get("messages", [])
-        assert message_exists(messages, pupil_msg), f"❌ Ментор не получил сообщение от ученика '{pupil_msg}'"
+        assert message_exists(messages, pupil_msg), \
+            f"{GlobalErrorMessages.MENTOR_DID_NOT_RECEIVE_MESSAGE.value} '{pupil_msg}'"
 
     with allure.step("✅ Обмен сообщениями успешен"):
         msg = f"[OK] Ментор: {mentor_msg} | Ученик: {pupil_msg}"

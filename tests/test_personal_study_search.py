@@ -1,8 +1,8 @@
 import pytest
 import allure
-from utils.get_token import get_mentor_token
-from api_clients.personal_study_client import PersonalStudyClient
-from test_data.pupils import po_test_pupil
+from src.utils.get_token import get_mentor_token
+from src.api_clients.personal_study_client import PersonalStudyClient
+from src.data.test_data.pupils import po_test_pupil
 
 
 @allure.title("Поиск ученика в Персональном обучении 2 (ПО2) по номеру телефона")

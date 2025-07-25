@@ -1,4 +1,4 @@
-from api_clients.base_api_client import BaseAPIClient
+from src.api_clients.base_api_client import BaseAPIClient
 
 class ChatClient(BaseAPIClient):
     def send_message(self, token: str, pupil_id: int, text: str):

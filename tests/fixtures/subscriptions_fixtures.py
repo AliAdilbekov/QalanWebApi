@@ -1,15 +1,15 @@
 import pytest
 import datetime
-from utils.data_generator import generate_firstname, generate_surname, generate_phone_number
-from utils.get_token import get_token
-from api_clients.pupil_client import PupilClient
-from api_clients.payment_client import PaymentClient
+from src.utils.data_generator import generate_firstname, generate_surname, generate_phone_number
+from src.utils.get_token import get_token
+from src.api_clients.pupil_client import PupilClient
+from src.api_clients.payment_client import PaymentClient
 import os
-from utils.data_generator import generate_kaspi_check_link 
-from utils.data_generator import generate_firstname, generate_surname, generate_phone_number
-from utils.get_token import get_token
-from api_clients.pupil_client import PupilClient
-from api_clients.payment_client import PaymentClient
+from src.utils.data_generator import generate_kaspi_check_link 
+from src.utils.data_generator import generate_firstname, generate_surname, generate_phone_number
+from src.utils.get_token import get_token
+from src.api_clients.pupil_client import PupilClient
+from src.api_clients.payment_client import PaymentClient
 
 @pytest.fixture
 def admin_token():
@@ -26,9 +26,10 @@ def payment_client():
 @pytest.fixture
 def check_file_path():
     return os.path.join(
+        "src",
         "utils",
         "check_for_payments",
-        "Снимок экрана 2025-07-09 в 1.28.54 PM.png"
+        "check.png"
     )
 
 @pytest.fixture

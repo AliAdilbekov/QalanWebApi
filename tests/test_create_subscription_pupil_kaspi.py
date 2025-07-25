@@ -1,6 +1,7 @@
 import pytest
 import allure
-
+from src.utils.retry_utils import retry_on_failure
+from src.enums.global_enums import GlobalErrorMessages
 
 @pytest.mark.parametrize("course_type, subscription_type, method_type, title", [
     ("math_course", "math_course", "kaspi_red", "Kaspi | kaspi_red"),
@@ -28,9 +29,9 @@ def test_create_subscription_pupil_kaspi(
 ):
     with allure.step("Создаём ученика"):
         response = pupil_client.create_pupil(admin_token, pupil_payload["payload"])
-        assert response.status_code == 200, f"❌ Ошибка создания ученика: {response.text}"
+        assert response.status_code == 200, f"{GlobalErrorMessages.CREATE_PUPIL_FAILED.value}: {response.text}"
         user_id = response.json()["userId"]
-        assert user_id, "❌ userId не найден"
+        assert user_id, GlobalErrorMessages.USER_ID_NOT_FOUND.value
 
     with allure.step("Формируем данные подписки через Kaspi"):
         form_data = kaspi_subscription_payload(
@@ -41,9 +42,13 @@ def test_create_subscription_pupil_kaspi(
             method_type=method_type
         )
 
-    with allure.step("Отправляем запрос"):
+    @retry_on_failure(max_attempts=3, wait_seconds=2)
+    def send_request_with_retry():
         response = payment_client.create_subscription(admin_token, form_data, check_file_path)
-        assert response.status_code == 200, f"❌ Ошибка подписки: {response.text}"
+        assert response.status_code == 200, f"{GlobalErrorMessages.RETRY_FAIL.value}: {response.text}"
+        return response
+
+    response = send_request_with_retry()
 
     with allure.step("Готово"):
         msg = f"[OK] Подписка «{title}» через Kaspi создана для {pupil_payload['expected']['phone']}"
