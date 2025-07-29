@@ -1,93 +1,71 @@
 import allure
+import pytest
+from src.enums.global_enums import GlobalErrorMessages
+from src.schemas.login_schemas import LoginSuccessResponse, LoginErrorResponse
 
-@allure.title("Успешный логин пользователя")
+
+@allure.title("Логин: Успешный логин пользователя")
 def test_user_can_login(auth_client, valid_login_payload):
     with allure.step("Отправляем запрос на логин"):
-        response = auth_client.login(valid_login_payload)
+        res = auth_client.login(valid_login_payload)
+        print(f"[DEBUG] Login Status: {res.status_code}")
+        print(f"[DEBUG] Login Body: {res.text}")
 
     with allure.step("Проверяем статус-код"):
-        assert response.status_code == 200, f"Ожидали 200, получили {response.status_code}"
+        assert res.status_code == 200, f"Ожидали 200, получили {res.status_code}"
 
-    with allure.step("Проверяем тело ответа"):
-        data = response.json()
-        assert "token" in data, "Нет токена"
-        assert "user" in data, "Нет данных о пользователе"
+    with allure.step("Валидируем тело ответа через схему"):
+        login_data = LoginSuccessResponse.model_validate_json(res.text)
+        assert login_data.user.surname == "ИСАКОВА", \
+            f"Ожидали фамилию 'ИСАКОВА', получили '{login_data.user.surname}'"
 
-        user = data["user"]
-        assert user["surname"] == "ИСАКОВА", f"Ожидали фамилию 'ИСАКОВА', получили '{user['surname']}'"
+    with allure.step("✅ Успешный логин"):
+        msg = f"[LOGIN OK] {login_data.user.firstname} {login_data.user.surname} | {login_data.user.phoneNumber}"
+        print(msg)
+        allure.attach(msg, name="Успешный логин", attachment_type=allure.attachment_type.TEXT)
 
-    with allure.step("Успешный логин"):
-        print(f"[LOGIN OK] {user['firstname']} {user['surname']} | {user['phoneNumber']}")
 
-
-@allure.title("Логин: Пользователь не найден по номеру")
-def test_login_user_not_found(auth_client, invalid_login_user_not_found):
-    with allure.step("Отправляем запрос на логин с несуществующим номером"):
-        response = auth_client.login(invalid_login_user_not_found)
+@pytest.mark.parametrize("payload, expected_status, expected_error", [
+    pytest.param(
+        {"phoneNumber": "7708346422", "password": "12345678", "countryCode": "kz", "isParent": False},
+        403,
+        "Пользователь по данному номеру не найден",
+        id="Логин: Пользователь не найден"
+    ),
+    pytest.param(
+        {"phoneNumber": "77083464227", "password": "1234567", "countryCode": "kz", "isParent": False},
+        403,
+        "Неправильный пароль",
+        id="Логин: Неправильный пароль"
+    ),
+    pytest.param(
+        {"phoneNumber": "77083464227", "password": "", "countryCode": "kz", "isParent": False},
+        400,
+        "Вы должны ввести пароль",
+        id="Логин: Пустой пароль"
+    ),
+    pytest.param(
+        {"phoneNumber": "", "password": "123", "countryCode": "kz", "isParent": False},
+        400,
+        "Номер телефона должен содержать не менее 10 цифр",
+        id="Логин: Пустой номер телефона"
+    ),
+])
+def test_login_negative_cases(auth_client, payload, expected_status, expected_error):
+    with allure.step("Отправляем запрос на логин"):
+        res = auth_client.login(payload)
+        print(f"[DEBUG] Login Status: {res.status_code}")
+        print(f"[DEBUG] Login Body: {res.text}")
 
     with allure.step("Проверяем статус-код"):
-        assert response.status_code == 403, f"Ожидали 403, получили {response.status_code}"
+        assert res.status_code == expected_status, f"Ожидали {expected_status}, получили {res.status_code}"
 
-    with allure.step("Проверяем текст ошибки"):
-        error = response.json()["error"]
-        assert error["rus"] == "Пользователь по данному номеру не найден"
+    with allure.step("Валидируем тело ошибки через схему"):
+        error_data = LoginErrorResponse.model_validate_json(res.text)
+        assert error_data.error.rus == expected_error, \
+            f"Ожидали ошибку '{expected_error}', получили '{error_data.error.rus}'"
 
-    with allure.step("Тест успешно отработал с ожидаемой ошибкой"):
-        success_msg = f"[SUCCESS] Получена корректная ошибка: {error['rus']}"
-        print(success_msg)
-        allure.attach(success_msg, name="Ошибка логина", attachment_type=allure.attachment_type.TEXT)
-
-
-@allure.title("Логин: Неправильный пароль")
-def test_login_invalid_password(auth_client, login_invalid_password):
-    with allure.step("Отправляем запрос с неправильным паролем"):
-        response = auth_client.login(login_invalid_password)
-
-    with allure.step("Проверяем статус-код"):
-        assert response.status_code == 403, f"Ожидали 403, получили {response.status_code}"
-
-    with allure.step("Проверяем текст ошибки"):
-        error = response.json()["error"]
-        assert error["rus"] == "Неправильный пароль"
-
-    with allure.step("Тест успешно отработал"):
-        msg = f"[SUCCESS] Получена ошибка: {error['rus']}"
+    with allure.step("✅ Тест негативного логина прошёл корректно"):
+        msg = f"[SUCCESS] Получена ошибка: {error_data.error.rus}"
         print(msg)
         allure.attach(msg, name="Ошибка логина", attachment_type=allure.attachment_type.TEXT)
-
-
-@allure.title("Логин: Пустой пароль")
-def test_login_empty_password(auth_client, login_empty_password):
-    with allure.step("Отправляем запрос с пустым паролем"):
-        response = auth_client.login(login_empty_password)
-
-    with allure.step("Проверяем статус-код"):
-        assert response.status_code == 400, f"Ожидали 400, получили {response.status_code}"
-
-    with allure.step("Проверяем текст ошибки"):
-        error = response.json()["error"]
-        assert error["rus"] == "Вы должны ввести пароль"
-
-    with allure.step("Тест успешно отработал"):
-        msg = f"[SUCCESS] Получена ошибка: {error['rus']}"
-        print(msg)
-        allure.attach(msg, name="Ошибка логина", attachment_type=allure.attachment_type.TEXT)
-
-
-@allure.title("Логин: Пустой номер телефона")
-def test_login_empty_phone(auth_client, login_empty_phone):
-    with allure.step("Отправляем запрос с пустым номером телефона"):
-        response = auth_client.login(login_empty_phone)
-
-    with allure.step("Проверяем статус-код"):
-        assert response.status_code == 400, f"Ожидали 400, получили {response.status_code}"
-
-    with allure.step("Проверяем текст ошибки"):
-        error = response.json()["error"]
-        assert error["rus"] == "Номер телефона должен содержать не менее 10 цифр"
-
-    with allure.step("Тест успешно отработал"):
-        msg = f"[SUCCESS] Получена ошибка: {error['rus']}"
-        print(msg)
-        allure.attach(msg, name="Ошибка логина", attachment_type=allure.attachment_type.TEXT)
-
