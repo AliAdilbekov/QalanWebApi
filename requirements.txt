@@ -1,7 +1,8 @@
-pytest
-requests
-faker
-allure-pytest
-pytz
+pytest==8.4.1
+requests==2.32.4
+Faker==37.4.0
+allure-pytest==2.14.3
+pytz==2025.2
 pydantic==2.11.7
-tenacity
+tenacity==9.1.2
+certifi==2025.6.15
