@@ -14,7 +14,7 @@ def get_token(pupil_code: str = DEFAULT_PUPIL_CODE, password: str = DEFAULT_PASS
     print(f"[DEBUG] POST {url}")
     print(f"[DEBUG] PAYLOAD: {payload}")
 
-    response = requests.post(url, json=payload)
+    response = requests.post(url, json=payload, verify=False)
     assert response.status_code == 200, f"[AUTH ERROR] {response.status_code}: {response.text}"
 
     data = response.json()
@@ -34,7 +34,7 @@ def get_employee_token() -> str:
     print(f"[DEBUG] POST {url}")
     print(f"[DEBUG] PAYLOAD: {payload}")
 
-    response = requests.post(url, json=payload)
+    response = requests.post(url, json=payload, verify=False)
     assert response.status_code == 200, f"[AUTH ERROR] {response.status_code}: {response.text}"
 
     data = response.json()
@@ -54,7 +54,7 @@ def get_mentor_token() -> str:
     print(f"[DEBUG] POST {url}")
     print(f"[DEBUG] PAYLOAD: {payload}")
 
-    response = requests.post(url, json=payload)
+    response = requests.post(url, json=payload, verify=False)
     assert response.status_code == 200, f"[AUTH ERROR] {response.status_code}: {response.text}"
 
     data = response.json()
@@ -74,7 +74,7 @@ def get_pupil_token() -> str:
     print(f"[DEBUG] POST {url}")
     print(f"[DEBUG] PAYLOAD: {payload}")
 
-    response = requests.post(url, json=payload)
+    response = requests.post(url, json=payload, verify=False)
     assert response.status_code == 200, f"[AUTH ERROR] {response.status_code}: {response.text}"
 
     data = response.json()
@@ -94,7 +94,7 @@ def get_freezing_pupil_token() -> str:
     print(f"[DEBUG] POST {url} (Freezing pupil)")
     print(f"[DEBUG] PAYLOAD: {payload}")
 
-    response = requests.post(url, json=payload)
+    response = requests.post(url, json=payload, verify=False)
     assert response.status_code == 200, f"[AUTH ERROR] {response.status_code}: {response.text}"
 
     data = response.json()

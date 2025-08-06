@@ -3,3 +3,5 @@ requests
 faker
 allure-pytest
 pytz
+pydantic==2.11.7
+tenacity

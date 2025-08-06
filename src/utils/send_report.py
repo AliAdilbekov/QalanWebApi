@@ -36,7 +36,7 @@ def send_allure_summary():
     }
 
     send_message_url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
-    r = requests.post(send_message_url, json=payload)
+    r = requests.post(send_message_url, json=payload, verify=False)
     print(f"[DEBUG] Telegram text status: {r.status_code}, {r.text}")
 
 def send_allure_file():
@@ -46,7 +46,7 @@ def send_allure_file():
     with open(file_path, "rb") as f:
         files = {"document": f}
         data = {"chat_id": CHAT_ID, "caption": "📎 summary.json"}
-        r = requests.post(url, data=data, files=files)
+    r = requests.post(url, data=data, files=files, verify=False)
         print(f"[DEBUG] Telegram file status: {r.status_code}, {r.text}")
 
 if __name__ == "__main__":

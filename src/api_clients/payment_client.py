@@ -13,6 +13,6 @@ class PaymentClient:
 
         with open(file_path, "rb") as f:
             files = {"checkAttachmentFile": f}
-            response = requests.post(url, headers=headers, data=form_data, files=files)
+            response = requests.post(url, headers=headers, data=form_data, files=files, verify=False)
         
         return response
