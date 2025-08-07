@@ -6,7 +6,7 @@ class BaseAPIClient:
         self.base_url = BASE_URL
 
     def _get_verify(self):
-        return CERT_PATH if USE_CUSTOM_CERT else True
+        return CERT_PATH if USE_CUSTOM_CERT else False
 
     def get(self, path, **kwargs):
         url = self.base_url + path
