@@ -1,7 +1,17 @@
-venv/
-.venv/
+# Python bytecode
 __pycache__/
 *.py[cod]
-certs/
+pycache/
+*.pyc
+
+# Environment files
+.env
+venv/
+.venv/
+
+# IDE/editor configs
 .vscode/
 .idea/
+
+# Certificates or sensitive folders
+certs/

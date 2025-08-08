@@ -273,4 +273,7 @@ pytest -s -v tests/test_login.py::test_login_success
 
 ---
 
+запуск с разных env
+ENV=test pytest -s -v tests/
+ENV=preprod pytest -s -v tests/
 
